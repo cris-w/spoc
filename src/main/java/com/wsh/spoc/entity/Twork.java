@@ -1,12 +1,15 @@
 package com.wsh.spoc.entity;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.io.Serializable;
 import java.util.Date;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * 作业表
@@ -29,6 +32,7 @@ public class Twork implements Serializable {
     /**
      * 作业描述
      */
+    @TableField("`desc`")
     private String desc;
 
     /**
@@ -37,9 +41,16 @@ public class Twork implements Serializable {
     private String url;
 
     /**
+     * 作业源文件名
+     */
+    private String originalName;
+
+    /**
      * 截止时间
      */
-    private String deadline;
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date deadline;
 
     /**
      * 选择的课程id
@@ -54,17 +65,15 @@ public class Twork implements Serializable {
     /**
      * 创建时间
      */
+    @TableField(fill = FieldFill.INSERT)
     private Date createTime;
 
     /**
      * 更新时间
      */
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date updateTime;
 
-    /**
-     * 是否删除  1已删除  0未删除
-     */
-    private String delFlag;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

@@ -2,6 +2,8 @@ package com.wsh.spoc.mapper;
 
 import com.wsh.spoc.entity.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.wsh.spoc.entity.Vo.UserVo;
+import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 /**
@@ -20,6 +22,14 @@ public interface UserMapper extends BaseMapper<User> {
      * @return user
      */
     User selectByUsernameAndPassword(@Param("username") String username,@Param("password") String password);
+
+    /**
+     * 获取学生列表
+     *
+     * @return
+     */
+    List<UserVo> selectStudentList();
+
 }
 
 

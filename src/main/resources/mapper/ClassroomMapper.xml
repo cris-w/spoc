@@ -1,19 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wsh.spoc.mapper.ClassroomMapper">
 
-    <resultMap id="BaseResultMap" type="com.wsh.spoc.entity.Classroom">
-            <id property="id" column="id" jdbcType="INTEGER"/>
-            <result property="name" column="name" jdbcType="VARCHAR"/>
-            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
-            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
-            <result property="desc" column="desc" jdbcType="VARCHAR"/>
-    </resultMap>
+  <resultMap id="BaseResultMap" type="com.wsh.spoc.entity.Classroom">
+    <id property="id" column="id" jdbcType="INTEGER"/>
+    <result property="name" column="name" jdbcType="VARCHAR"/>
+    <result property="teacherId" column="teacher_id" jdbcType="INTEGER"/>
+    <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+    <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    <result property="desc" column="desc" jdbcType="VARCHAR"/>
+  </resultMap>
 
-    <sql id="Base_Column_List">
-        id,name,create_time,
-        update_time,desc
-    </sql>
+  <sql id="Base_Column_List">
+    id,name,teacher_id,create_time,
+        update_time,`desc`
+  </sql>
+  <select id="selectClassroomList" resultType="com.wsh.spoc.entity.Vo.ClassroomVo">
+    select c.id, c.name, c.`desc`, u.nickname as teacher_name
+    from classroom c
+    join user u
+    on c.teacher_id = u.id
+    <where>
+      <if test="name != null and name != ''">
+        c.name like concat('%',#{name,jdbcType=VARCHAR},'%')
+      </if>
+    </where>
+  </select>
 </mapper>

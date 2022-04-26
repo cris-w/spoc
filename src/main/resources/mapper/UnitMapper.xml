@@ -7,14 +7,11 @@
     <resultMap id="BaseResultMap" type="com.wsh.spoc.entity.Unit">
             <id property="id" column="id" jdbcType="INTEGER"/>
             <result property="name" column="name" jdbcType="VARCHAR"/>
-            <result property="url" column="url" jdbcType="VARCHAR"/>
-            <result property="parentId" column="parent_id" jdbcType="INTEGER"/>
             <result property="classroomId" column="classroom_id" jdbcType="INTEGER"/>
-            <result property="userId" column="user_id" jdbcType="INTEGER"/>
+            <result property="order" column="order" jdbcType="INTEGER"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,name,url,
-        parent_id,classroom_id,user_id
+        id,name,classroom_id,order
     </sql>
 </mapper>

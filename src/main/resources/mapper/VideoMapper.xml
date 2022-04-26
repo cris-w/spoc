@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wsh.spoc.mapper.VideoMapper">
+
+    <resultMap id="BaseResultMap" type="com.wsh.spoc.entity.Video">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="unitId" column="unit_id" jdbcType="INTEGER"/>
+            <result property="classroomId" column="classroom_id" jdbcType="INTEGER"/>
+            <result property="name" column="name" jdbcType="VARCHAR"/>
+            <result property="order" column="order" jdbcType="INTEGER"/>
+            <result property="url" column="url" jdbcType="VARCHAR"/>
+            <result property="originalName" column="original_name" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,classroom_id,unit_id,name,
+        order,url,original_name
+    </sql>
+</mapper>

@@ -9,6 +9,7 @@ import lombok.Data;
 
 /**
  * 成绩表
+ * @author wjh
  * @TableName score
  */
 @TableName(value ="score")
@@ -31,6 +32,16 @@ public class Score implements Serializable {
     private String userName;
 
     /**
+     * 作业url
+     */
+    private String url;
+
+    /**
+     * 作业源文件名
+     */
+    private String originalName;
+
+    /**
      * 属于的课程id
      */
     private Integer tworkId;
@@ -44,6 +55,11 @@ public class Score implements Serializable {
      * 分数
      */
     private Integer grade;
+
+    /**
+     * 评语
+     */
+    private String remark;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

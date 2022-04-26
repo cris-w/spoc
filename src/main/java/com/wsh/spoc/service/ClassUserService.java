@@ -2,6 +2,8 @@ package com.wsh.spoc.service;
 
 import com.wsh.spoc.entity.ClassUser;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.wsh.spoc.entity.Vo.UserVo;
+import java.util.List;
 
 /**
 * @author wjh
@@ -10,4 +12,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface ClassUserService extends IService<ClassUser> {
 
+    /**
+     * 通过小组id 获取成员
+     *
+     * @param classId
+     * @return
+     */
+    List<UserVo> listMemberByClassId(Integer classId);
 }

@@ -3,6 +3,8 @@ package com.wsh.spoc.service;
 import com.wsh.spoc.entity.Bo.LoginBo;
 import com.wsh.spoc.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.wsh.spoc.entity.Vo.UserVo;
+import java.util.List;
 
 /**
 * @author wjh
@@ -26,4 +28,11 @@ public interface UserService extends IService<User> {
      * @return true 存在 false 不存在
      */
     boolean isExist(String username);
+
+    /**
+     * 获取所有学生
+     *
+     * @return
+     */
+    List<UserVo> listStudent();
 }

@@ -4,9 +4,11 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.wsh.spoc.entity.Bo.LoginBo;
 import com.wsh.spoc.entity.User;
+import com.wsh.spoc.entity.Vo.UserVo;
 import com.wsh.spoc.exception.MyException;
 import com.wsh.spoc.mapper.UserMapper;
 import com.wsh.spoc.service.UserService;
+import java.util.List;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
@@ -29,14 +31,27 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         if (!exist) {
             throw new MyException(404, "用户不存在");
         }
-        return userMapper.selectByUsernameAndPassword(info.getUsername(),
-                info.getPassword()) != null;
+        User user = userMapper.selectByUsernameAndPassword(info.getUsername(),
+                info.getPassword());
+        if(user == null) {
+            return false;
+        } else {
+            if(user.getStatus() == 0) {
+                throw new MyException(404, "账户已禁用");
+            }
+            return true;
+        }
     }
 
     @Override
     public boolean isExist(String username) {
         return userMapper.selectCount(
                 new LambdaQueryWrapper<User>().eq(User::getUsername, username)) > 0;
+    }
+
+    @Override
+    public List<UserVo> listStudent() {
+        return userMapper.selectStudentList();
     }
 }
 

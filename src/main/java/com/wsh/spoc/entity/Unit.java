@@ -25,15 +25,6 @@ public class Unit implements Serializable {
      */
     private String name;
 
-    /**
-     * 节点url
-     */
-    private String url;
-
-    /**
-     * 父节点id 0为顶级节点
-     */
-    private Integer parentId;
 
     /**
      * 课程id
@@ -41,9 +32,10 @@ public class Unit implements Serializable {
     private Integer classroomId;
 
     /**
-     * 创建人id
+     * 排序
      */
-    private Integer userId;
+    @TableField("`order`")
+    private Integer order;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

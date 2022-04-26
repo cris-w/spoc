@@ -8,28 +8,49 @@ import java.io.Serializable;
 import lombok.Data;
 
 /**
- * 小组用户关联表
+ * 小节表
  * @author wjh
- * @TableName class_user
+ * @TableName video
  */
-@TableName(value ="class_user")
+@TableName(value ="video")
 @Data
-public class ClassUser implements Serializable {
+public class Video implements Serializable {
     /**
-     * 
+     * id
      */
     @TableId(type = IdType.AUTO)
     private Integer id;
 
     /**
-     * 班级id
+     * 单元id
      */
-    private Integer classId;
+    private Integer unitId;
 
     /**
-     * 用户id
+     * 小组id
      */
-    private Integer userId;
+    private Integer classroomId;
+
+    /**
+     * 名称
+     */
+    private String name;
+
+    /**
+     * 排序
+     */
+    @TableField("`order`")
+    private Integer order;
+
+    /**
+     * 视屏地址
+     */
+    private String url;
+
+    /**
+     * 视屏源文件名
+     */
+    private String originalName;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

@@ -2,6 +2,8 @@ package com.wsh.spoc.mapper;
 
 import com.wsh.spoc.entity.Classroom;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.wsh.spoc.entity.Vo.ClassroomVo;
+import java.util.List;
 
 /**
 * @author wjh
@@ -11,6 +13,13 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 */
 public interface ClassroomMapper extends BaseMapper<Classroom> {
 
+    /**
+     * 获取小组列表
+     *
+     * @param name name
+     * @return list
+     */
+    List<ClassroomVo> selectClassroomList(String name);
 }
 
 

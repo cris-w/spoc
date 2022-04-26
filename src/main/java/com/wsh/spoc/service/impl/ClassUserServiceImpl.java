@@ -2,8 +2,11 @@ package com.wsh.spoc.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.wsh.spoc.entity.ClassUser;
+import com.wsh.spoc.entity.Vo.UserVo;
 import com.wsh.spoc.mapper.ClassUserMapper;
 import com.wsh.spoc.service.ClassUserService;
+import java.util.List;
+import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,6 +18,13 @@ import org.springframework.stereotype.Service;
 public class ClassUserServiceImpl extends ServiceImpl<ClassUserMapper, ClassUser>
     implements ClassUserService {
 
+    @Resource
+    private ClassUserMapper classUserMapper;
+
+    @Override
+    public List<UserVo> listMemberByClassId(Integer classId) {
+        return classUserMapper.selectMember(classId);
+    }
 }
 
 
