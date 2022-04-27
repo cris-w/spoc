@@ -64,10 +64,10 @@ public class WorkController {
     @GetMapping("/removeById/{id}")
     public R<Void> removeById(@PathVariable Integer id) {
         Twork work = tworkService.getById(id);
-        if(StrUtil.isNotBlank(work.getOriginalName())) {
-           if (!oosService.deleteFile(work.getOriginalName())) {
-               throw new MyException(400, "文件删除失败");
-           }
+        if (StrUtil.isNotBlank(work.getOriginalName())) {
+            if (!oosService.deleteFile(work.getOriginalName())) {
+                throw new MyException(400, "文件删除失败");
+            }
         }
         tworkService.removeById(id);
         return R.success("删除成功");
@@ -95,6 +95,18 @@ public class WorkController {
     public R<Void> update(@RequestBody Twork twork) {
         tworkService.updateById(twork);
         return R.success("修改成功");
+    }
+
+    /**
+     * 通过学生id查询作业列表
+     *
+     * @param userId
+     * @return
+     */
+    @GetMapping("/listWorkByUserId/{userId}")
+    public R<List<Twork>> listWorkByUserId(@PathVariable Integer userId) {
+        List<Twork> list = tworkService.listWorkByUserId(userId);
+        return R.success(list);
     }
 
 

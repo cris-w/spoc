@@ -2,6 +2,7 @@ package com.wsh.spoc.service;
 
 import com.wsh.spoc.entity.ClassUser;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.wsh.spoc.entity.Vo.ClassroomVo;
 import com.wsh.spoc.entity.Vo.UserVo;
 import java.util.List;
 
@@ -19,4 +20,12 @@ public interface ClassUserService extends IService<ClassUser> {
      * @return
      */
     List<UserVo> listMemberByClassId(Integer classId);
+
+    /**
+     * 通过学生id查询学生所加入的小组
+     *
+     * @param userId
+     * @return
+     */
+    List<ClassroomVo> listClassByStudentId(Integer userId);
 }

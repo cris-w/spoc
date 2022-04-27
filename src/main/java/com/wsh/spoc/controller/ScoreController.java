@@ -9,6 +9,7 @@ import com.wsh.spoc.utils.OosUtil;
 import com.wsh.spoc.utils.R;
 import io.swagger.annotations.Api;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -52,9 +53,9 @@ public class ScoreController {
     @GetMapping("/removeById/{id}")
     public R<Void> removeById(@PathVariable Integer id) {
         Score score = scoreService.getById(id);
-        if(StrUtil.isNotEmpty(score.getOriginalName())) {
+        if (StrUtil.isNotEmpty(score.getOriginalName())) {
             boolean flag = oosUtil.delete(score.getOriginalName());
-            if(!flag) {
+            if (!flag) {
                 throw new MyException(400, "删除文件错误");
             }
         }
@@ -84,5 +85,31 @@ public class ScoreController {
     public R<Void> update(@RequestBody Score score) {
         scoreService.updateById(score);
         return R.success("修改成功");
+    }
+
+    /**
+     * 通过学生id查询已完成的作业ids
+     *
+     * @param userId
+     * @return
+     */
+    @GetMapping("/listWorkIdByUserId/{userId}")
+    public R<List<Integer>> listWorkIdByUserId(@PathVariable Integer userId) {
+        List<Score> list = scoreService.list(
+                new LambdaQueryWrapper<Score>().eq(Score::getUserId, userId));
+        List<Integer> workIds = list.stream().map(Score::getTworkId).collect(Collectors.toList());
+        return R.success(workIds);
+    }
+
+    /**
+     * 提交作业
+     *
+     * @param score
+     * @return
+     */
+    @PostMapping("/submitWork")
+    public R<Void> submitWork(@RequestBody Score score) {
+        scoreService.save(score);
+        return R.success("提交成功");
     }
 }

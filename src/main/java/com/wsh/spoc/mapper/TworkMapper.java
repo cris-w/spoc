@@ -2,6 +2,7 @@ package com.wsh.spoc.mapper;
 
 import com.wsh.spoc.entity.Twork;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import java.util.List;
 
 /**
 * @author wjh
@@ -11,6 +12,13 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 */
 public interface TworkMapper extends BaseMapper<Twork> {
 
+    /**
+     * 通过班级ids 查询作业
+     *
+     * @param classIds
+     * @return
+     */
+    List<Twork> selectWorksByClassIds(List<Integer> classIds);
 }
 
 

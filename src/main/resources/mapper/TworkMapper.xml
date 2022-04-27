@@ -23,4 +23,13 @@
         url,original_name,deadline,classroom_id,
         user_id,create_time,update_time
   </sql>
+  <select id="selectWorksByClassIds" resultType="com.wsh.spoc.entity.Twork">
+    select
+    <include refid="Base_Column_List"/>
+    from twork
+    where classroom_id in
+    <foreach collection="list" item="id" index="index" open="(" close=")" separator=",">
+      #{id}
+    </foreach>
+  </select>
 </mapper>

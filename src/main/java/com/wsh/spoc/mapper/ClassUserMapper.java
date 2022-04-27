@@ -2,6 +2,7 @@ package com.wsh.spoc.mapper;
 
 import com.wsh.spoc.entity.ClassUser;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.wsh.spoc.entity.Vo.ClassroomVo;
 import com.wsh.spoc.entity.Vo.UserVo;
 import java.util.List;
 
@@ -20,6 +21,14 @@ public interface ClassUserMapper extends BaseMapper<ClassUser> {
      * @return
      */
     List<UserVo> selectMember(Integer classId);
+
+    /**
+     * 通过学生id查询学生所加入的小组
+     *
+     * @param userId
+     * @return
+     */
+    List<ClassroomVo> selectClassByStudentId(Integer userId);
 }
 
 

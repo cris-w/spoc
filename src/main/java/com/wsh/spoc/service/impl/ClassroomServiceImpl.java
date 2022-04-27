@@ -64,6 +64,12 @@ public class ClassroomServiceImpl extends ServiceImpl<ClassroomMapper, Classroom
         });
         return classUserService.saveBatch(list, list.size());
     }
+
+    @Override
+    public List<ClassroomVo> listClassByStudentId(Integer userId) {
+
+        return classUserService.listClassByStudentId(userId);
+    }
 }
 
 

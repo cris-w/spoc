@@ -2,6 +2,7 @@ package com.wsh.spoc.service;
 
 import com.wsh.spoc.entity.Twork;
 import com.baomidou.mybatisplus.extension.service.IService;
+import java.util.List;
 
 /**
 * @author wjh
@@ -10,4 +11,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface TworkService extends IService<Twork> {
 
+    /**
+     * 通过学生id查询作业列表
+     *
+     * @param userId
+     * @return
+     */
+    List<Twork> listWorkByUserId(Integer userId);
 }

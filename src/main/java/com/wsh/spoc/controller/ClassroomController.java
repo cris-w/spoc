@@ -1,6 +1,5 @@
 package com.wsh.spoc.controller;
 
-import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.wsh.spoc.entity.Classroom;
 import com.wsh.spoc.entity.User;
@@ -165,5 +164,17 @@ public class ClassroomController {
     public R<Void> joinClass(@PathVariable Integer classId, @RequestBody List<Integer> userIds) {
         classroomService.joinClass(classId, userIds);
         return R.success("添加成功");
+    }
+
+    /**
+     * 通过学生id查询学生所加入的小组
+     *
+     * @param userId
+     * @return
+     */
+    @GetMapping("/listClassByStudentId/{userId}")
+    public R<List<ClassroomVo>> listClassByStudentId(@PathVariable Integer userId) {
+        List<ClassroomVo> list = classroomService.listClassByStudentId(userId);
+        return R.success(list);
     }
 }

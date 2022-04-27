@@ -53,4 +53,12 @@ public interface ClassroomService extends IService<Classroom> {
      * @return
      */
     boolean joinClass(Integer classId, List<Integer> userIds);
+
+    /**
+     * 通过学生id查询学生所加入的小组
+     *
+     * @param userId
+     * @return
+     */
+    List<ClassroomVo> listClassByStudentId(Integer userId);
 }

@@ -24,4 +24,17 @@
            JOIN USER u ON cu.user_id = u.id
     WHERE cu.class_id = #{userId}
   </select>
+  <select id="selectClassByStudentId" resultType="com.wsh.spoc.entity.Vo.ClassroomVo">
+    SELECT
+      c.id,
+      c.name,
+      c.`desc`,
+      u.nickname as teacher_name
+    FROM
+      class_user cu
+        JOIN classroom c ON c.id = cu.class_id
+        JOIN user u ON c.teacher_id = u.id
+    WHERE
+      cu.user_id = #{userId}
+  </select>
 </mapper>
